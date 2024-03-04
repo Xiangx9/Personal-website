@@ -1,0 +1,12 @@
+node_modules/
+npm-debug.log
+_book/
+koa2-note/demo/*/node_modules
+koa2-note/demo/*/npm-debug.log
+koa2-note/demo/*/package-lock.json
+koa2-note/demo/*/upload-files/
+koa2-note/demo/upload-async/static/image/
+
+node-api/demo/*/node_modules
+vue3-vite/demo/*/node_modules
+
