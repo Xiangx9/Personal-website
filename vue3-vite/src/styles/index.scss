@@ -1,0 +1,160 @@
+$sysColor: #fff;
+$textColor: rgba(24, 107, 179, 0.8);
+$backGround: rgba(255, 255, 255, 0.1);
+$boxShadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+html,
+body {
+  margin: 0;
+  font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
+  letter-spacing: 10px;
+}
+#app {
+  // margin: -10px !important;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+.name {
+  width: 80%;
+  height: 100px;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 20px;
+  font-size: 30px;
+  color: $textColor;
+  font-family: "Pacifico-Regular" !important;
+}
+.iconfont{
+  color: #fff;
+  font-size: 80px !important;
+}
+// 登录
+.Login {
+  width: 100vw;
+  height: 100vh;
+  // background: url("/src/assets/images/background2.webp")  !important;
+  // background-size: 100% 100%;
+  .LoginBox {
+    width: 500px;
+    height: 400px;
+    background: $backGround;
+    border-radius: 25px;
+    box-shadow: $boxShadow;
+    cursor: pointer;
+    flex-direction: column;
+    .loginText {
+      width: 280px;
+      display: flex;
+      justify-content: space-between;
+      line-height: 3;
+      font-size: 14px;
+    }
+  }
+  .LoginBox:hover {
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.2);
+    transition: border 0.3s ease-out;
+    transform: scale(0.9);
+  }
+}
+
+.el-scrollbar {
+  width: 80%;
+  height: 800px !important;
+  background: $backGround;
+  box-shadow: $boxShadow;
+  border-radius: 10px;
+}
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  .scrollbar-demo-item {
+    margin: 10px 0;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: $boxShadow;
+    border-radius: 10px;
+    font-family: "UnidreamLED" !important;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    .title {
+      text-align: center;
+      color: $textColor;
+      font-family: "Pacifico-Regular" !important;
+      font-weight: 900;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+  }
+}
+
+#draw-border {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  border: 1px solid #409eff;
+  background: none;
+  text-transform: uppercase;
+  color: #386a9c;
+  font-weight: bold;
+  position: relative;
+  outline: none;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  letter-spacing: 10px;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+button::before,
+button::after {
+  box-sizing: inherit;
+  position: absolute;
+  content: "";
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+
+button::after {
+  bottom: 0;
+  right: 0;
+}
+
+button::before {
+  top: 0;
+  left: 0;
+}
+
+button:hover::before,
+button:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+button:hover::before {
+  border-top-color: #409eff;
+  border-right-color: #409eff;
+  transition: width 0.3s ease-out, height 0.3s ease-out 0.3s;
+}
+
+button:hover::after {
+  border-bottom-color: #409eff;
+  border-left-color: #409eff;
+  transition: border-color 0s ease-out 0.6s, width 0.3s ease-out 0.6s,
+    height 0.3s ease-out 1s;
+}

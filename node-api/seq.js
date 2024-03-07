@@ -32,7 +32,7 @@ const User = sequelize.define(
       allowNull: false, // 允许/关闭null值 默认为true
       unique: true, // 唯一约束
       defaultValue: "John Doe", // 默认值
-      primaryKey:true,//主键值 在整个表中必须是唯一的，并且不能为空。可通过primaryKey 设置为 true
+      primaryKey: true, //主键值 在整个表中必须是唯一的，并且不能为空。可通过primaryKey 设置为 true
       comment: "用户名, 唯一",
     },
     password: {
@@ -75,13 +75,13 @@ const updateUser = async ({ id, user_name, password }) => {
 const findOneUser = async ({ id }) => {
   const whereOpt = { id };
   const users = await User.findOne({ where: whereOpt });
-    console.log(111111,users.dataValues);
+  console.log(111111, users.dataValues);
 };
 // findOneUser({ id: 2});
 
 // 查询特定的列
 const findAllUser = async () => {
-    const users = await User.findAll();
-    return users;
-  };
-  //  findAllUser();
+  const users = await User.findAll();
+  return users;
+};
+//  findAllUser();

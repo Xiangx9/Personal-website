@@ -57,7 +57,7 @@ axios.interceptors.response.use(
               // 刷新 token 完成后，重新发送之前失败的请求
               refreshSubscribers.forEach((subscriber) => subscriber(newToken));
               refreshSubscribers = [];
-              
+
               return axios(originalRequest);
             })
             .catch((res) => {
@@ -112,6 +112,12 @@ export function request(url = "", params = {}, type = "POST") {
     } else if (type.toUpperCase() === "DELETE") {
       promise = axios({
         method: "delete",
+        url,
+        params,
+      });
+    } else if (type.toUpperCase() === "PATCH") {
+      promise = axios({
+        method: "patch",
         url,
         params,
       });

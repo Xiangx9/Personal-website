@@ -6,8 +6,8 @@ export class Logins {       // 登录模块
     static async login(params) {  //登录
         return request('/api/users/login',params, 'post')
     }
-    static async ModifyPassword(params) {  //修改密码
-        return request('/api/users/',params, 'put')
+    static async changePassword(params) {  //修改密码
+        return request('/api/users/',params, 'patch')
     }
 }
 
