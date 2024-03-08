@@ -78,25 +78,16 @@ const list = ref([{
 </script>
 
 <style scoped lang="scss">
-.contain {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+.title {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 10px;
+}
 
-    .title {
-        font-size: 16px;
-        font-weight: 900;
-        letter-spacing: 10px;
-    }
-
-    .text {
-        font-size: 14px;
-        margin: 20px 0;
-        letter-spacing: 2px;
-    }
+.text {
+    font-size: 14px;
+    margin: 20px 0;
+    letter-spacing: 2px;
 }
 
 .box-card {

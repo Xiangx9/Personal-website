@@ -79,9 +79,12 @@ const findOneUser = async ({ id }) => {
 };
 // findOneUser({ id: 2});
 
-// 查询特定的列
-const findAllUser = async () => {
-  const users = await User.findAll();
-  return users;
+// 查询所有 从数据库读取整个表
+const findAllUser = async ({ id}) => {
+  const whereOpt = { id };
+  const users = await User.findAll({ where: whereOpt });
+  users.map((item) => {
+    console.log(item.dataValues);
+  });
 };
-//  findAllUser();
+findAllUser({ id: 2});

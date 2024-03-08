@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "35165597",
+      "name": "评定方法",
+      "font_class": "pingdingfangfa",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
       "icon_id": "1526978",
       "name": "个人",
       "font_class": "geren1",

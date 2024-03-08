@@ -27,6 +27,12 @@
                         <div class="iconfont icon-xiangmu_xiangmuguanli"></div>
                     </router-link>
                 </div>
+                <div class="scrollbar-demo-item ">
+                    <router-link to="/ArrayObject" class="title">
+                        <div class="title"> Array Object</div>
+                        <div class="iconfont icon-pingdingfangfa"></div>
+                    </router-link>
+                </div>
                 <div class="scrollbar-demo-item bgimg"> </div>
             </div>
         </el-scrollbar>

@@ -18,7 +18,7 @@ class UserService {
     is_admin && Object.assign(whereOpt, { is_admin })
 
     const res = await User.findOne({
-      attributes: ['id', 'user_name', 'password', 'is_admin'],
+      attributes: ['id', 'user_name', 'password', 'is_admin'], //要仅选择某些属性
       where: whereOpt,
     })
 

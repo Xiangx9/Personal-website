@@ -35,6 +35,12 @@ const routes = [
     name: "WorksProject",
     component: () => import("@/views/WorksProject/index.vue"),
   },
+  {
+    //数组方法
+    path: "/ArrayObject",
+    name: "ArrayObject",
+    component: () => import("@/views/ArrayObject/index.vue"),
+  },
 ];
 
 //创建路由
