@@ -4,7 +4,7 @@
         <el-scrollbar>
             <div class="home">
                 <div class="scrollbar-demo-item">
-                    <Yiyan></Yiyan>
+                    <Yiyan :title="title" @handleAdd="handleAdd"></Yiyan>
                 </div>
                 <div class="scrollbar-demo-item">
                     <Time></Time>
@@ -51,6 +51,14 @@ const router = useRouter()
 // 接收参数
 // const router = useRoute()
 // console.log('id：'+router.query.id)
+
+
+//子传父
+const title =ref('yi')
+// 定义事件函数
+const handleAdd = (item) => {
+    console.log(item);
+}
 
 
 onMounted(() => {

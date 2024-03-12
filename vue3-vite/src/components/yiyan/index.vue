@@ -1,5 +1,5 @@
 <template>
-  <div class="yiyan">
+  <div class="yiyan" @click="handleTitle()">
     <div class="div_con" v-for="item in yiyanAyy" :key="item">
       <div class="hitokoto">{{ item.hitokoto || '永远相信美好的事即将发生' }}</div>
       <div class="from">- [ {{ item.from || '雷军' }} ]</div>
@@ -10,6 +10,19 @@
 <script setup>
 import myaxios from "axios";
 import { ref } from 'vue';
+
+//父传子
+import { defineProps,defineEmits  } from "vue"
+const {title} = defineProps(['title']) // 可以简写 解构
+console.log(title);
+
+//子传父
+// 调用defineEmits方法 并接受父组件给绑定的事件
+const emit = defineEmits(['handleAdd'])
+const handleTitle = () => {
+    emit("handleAdd", '我是子组件传递的数据')
+}
+
 
 const yiyanAyy = ref([
   {
