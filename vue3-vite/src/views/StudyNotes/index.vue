@@ -63,7 +63,7 @@ const list = ref([{
     title: '其他类型',
     Url: [{
         name: '主机',
-        url: 'http://xxshow.phpnet.us'
+        url: 'https://cpanel.phpnet.us/'
     }, {
         name: 'cloudflare',
         url: 'https://dash.cloudflare.com/'
