@@ -11,8 +11,18 @@ export class Logins {       // 登录模块
     }
 }
 
-export class landRelevant {     // 模块二
-    static async landList(params) {
-        return request('',params, 'get')
+export class MyShow {     // 个人介绍模块
+    static async AvatarUpload (params) {  //头像上传
+        return request('/api/goods/upload',params, 'post')
     }
+    static async create (params) {  //创建内容
+        return request(`/api/My/`, params,'post')
+    }
+    static async update (id,params) {  //修改内容
+        return request(`/api/My/${id}`, params,'put')
+    }
+    static async findAll (params) {  //获取内容
+        return request('/api/My/',params, 'get')
+    }
+    
 }
