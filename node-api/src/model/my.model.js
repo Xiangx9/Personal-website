@@ -23,17 +23,17 @@ const Goods = seq.define(
     my: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: "姓名",
+      comment: "个人介绍",
     },
     Work: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: "姓名",
+      comment: "工作经历",
     },
     Project: {
       type: DataTypes.STRING,
       allowNull: false,
-      comment: "姓名",
+      comment: "项目经历",
     },
     // goods_num: {
     //   type: DataTypes.INTEGER,

@@ -27,22 +27,25 @@
                     </template>
                 </el-skeleton>
                 <div v-if="!loading">
-                    <el-link :icon="Edit" style="float: right;" @click="EditFn()"></el-link>
+                    <el-link :underline="false" :icon="Edit" style="float: right;" @click="EditFn()"></el-link>
+                    <el-link :underline="false" style="float: left;" @click="find('admin')">
+                        <el-icon class="el-icon--right"><icon-view /></el-icon>
+                    </el-link>
                     <div class="avatar" style="display: flex; align-items: center;">
-                        <el-upload action :http-request="Upload" :show-file-list="false"
+                        <el-upload :disabled="EditInp" action :http-request="Upload" :show-file-list="false"
                             :before-upload="beforeAvatarUpload">
-                            <el-avatar :size="100" :src="My.avatar" :style="EditInp ? '' : 'cursor: pointer'" />
+                            <el-avatar :size="100" :src="My.avatar" />
                         </el-upload>
                         <div style=" display: flex; flex-direction: column; position: relative; margin-left: 15px;">
                             <div v-if="EditInp">
-                                <div style="font-size: 30px;">{{ My.name }}</div>
+                                <div style="font-size: 30px;">{{ My.name || "姓名:" }}</div>
                                 <div style="height: 10px;"></div>
-                                <div style="font-size:20px;">{{ My.phone }}</div>
+                                <div style="font-size:20px;">{{ My.phone || '电话:' }}</div>
                             </div>
                             <div v-else>
-                                <el-input v-model="My.name" clearable class="demo-form" />
+                                <el-input v-model="My.name" clearable class="demo-form" placeholder="请输入姓名" />
                                 <div style="height: 10px;"></div>
-                                <el-input v-model.number="My.phone" clearable class="demo-form" />
+                                <el-input v-model.number="My.phone" clearable class="demo-form" placeholder="请输入电话" />
                             </div>
                         </div>
                     </div>
@@ -62,38 +65,47 @@
                             :autosize="{ minRows: 2, maxRows: 4 }" type="textarea" placeholder="" />
                     </div>
                     <el-button type="primary" v-if="!EditInp" style="float: right;margin: 20px 0;"
-                        @click="CreateN()">提交</el-button>
+                        @click="CreateN(My)">更新数据</el-button>
                 </div>
             </el-card>
         </el-scrollbar>
+        <user :tableData="tableData" v-if="userShow"></user>
     </div>
 </template>
 
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Edit, View as IconView } from '@element-plus/icons-vue'
-import { MyShow } from '@/api/api'
 import { ElMessage } from 'element-plus'
-let { AvatarUpload, create, update, findAll } = MyShow
+import tokenStore from '@/store/token.js'
+
+import user from './user/user.vue'
+
+import { MyShow } from '@/api/api'
+let { AvatarUpload, create, update, findAll, GetUser } = MyShow
 
 const loading = ref(true)
-
+console.log();
 //内容
 const My = ref({
     avatar: '/src/assets/images/background1.webp',
-    name: 'xx',
-    phone: '17343672511(同微信)',
-    my: `134
-            123`,
-    Work: `134
-            123`,
-    Project: `134
-            123`,
+    name: tokenStore().user.user_name,
+    phone: '电话：',
+    my: `暂无信息
+                暂无信息  `,
+    Work: `暂无信息
+                暂无信息 `,
+    Project: `暂无信息
+                暂无信息 `,
 })
 //编辑控制
 const EditInp = ref(true)
 const EditFn = () => {
+    if (!tokenStore().user.is_admin) {
+        ElMessage.error('您不是管理员，不能进行更该')
+        return false
+    }
     EditInp.value = !EditInp.value
 }
 //上传头像
@@ -111,31 +123,70 @@ const beforeAvatarUpload = (rawFile) => {
     return true
 }
 const Upload = async (rawFile) => {
-    const { data: res } = await AvatarUpload(rawFile)
-    console.log(res);
-    My.value.avatar =`${import.meta.env.VITE_RES_URL}/${res.result.goods_img}`
+    try {
+        const { data: res } = await AvatarUpload(rawFile)
+        console.log(res);
+        My.value.avatar = `${import.meta.env.VITE_RES_URL}/${res.result.goods_img}`
+    } catch (error) {
+        console.log('上传头像', error);
+    }
 }
 // 提交数据
-const CreateN = async () => {
-    let pram = My.value
-    // const { data: res } = await create(pram)
-    const { data: res } = await update(1, pram)
-    if (res.code==0) {
-        find()
-        EditInp.value = true
+const CreateN = async (item) => {
+    try {
+        let pram = My.value
+        const { data: res } = await update(item.id || 1, pram)
+        if (res.code == 0) {
+            find()
+            EditInp.value = true
+        }
+    } catch (error) {
+        console.log('更新数据', error);
     }
 }
 //获取数据
-const find = async () => {
-    const { data: res } = await findAll()
-    console.log(res);
-    My.value = res.result.list[0]
+const userShow = ref(false)
+const find = async (name) => {
+    try {
+        let pram = {
+            name: name || My.value.name
+        }
+        const { data: res } = await findAll(pram)
+        console.log(res);
+        if (!res.result.dataValues.name) {
+            await create(My.value)
+            find()
+            return false
+        }
+        My.value = res.result.dataValues
+        loading.value = false
+        if (name=='admin') {
+            UploadUser()
+        }
+    } catch (error) {
+        console.log('获取数据', error);
+    }
 }
-find()
 
-setTimeout(() => {
-    loading.value = false
-}, 2000)
+// 修改获取用户权限
+const tableData = ref([])
+const UploadUser = async () => {
+    try {
+        let pram = {
+            pageNum: 1,
+            pageSize: 10
+        }
+        const { data: res } = await GetUser(pram)
+        console.log('修改获取用户权限', res);
+        tableData.value = res.result
+        userShow.value=true
+    } catch (error) {
+        console.log('修改获取用户权限', error);
+    }
+}
+onMounted(() => {
+    find()
+})
 </script>
 
 <style lang="scss" scoped>

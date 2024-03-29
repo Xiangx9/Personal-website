@@ -24,5 +24,8 @@ export class MyShow {     // 个人介绍模块
     static async findAll (params) {  //获取内容
         return request('/api/My/',params, 'get')
     }
+    static async GetUser (params) {  //获取用户信息
+        return request('/api/My/user',params, 'get')
+    }
     
 }

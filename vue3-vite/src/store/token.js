@@ -3,6 +3,7 @@ const tokenStore = defineStore("tokenId", {
   state: () => {
     return {
         token: 1,
+        user:{}
     };
   },
   getters: {
@@ -10,10 +11,8 @@ const tokenStore = defineStore("tokenId", {
   actions: {
   },
   persist: {
-    enabled: true, 
-    key: 'tokenId',
+    enabled: true, // true 表示开启持久化保存
     storage: window.sessionStorage,
-    paths: ['token'],
   },
 });
 

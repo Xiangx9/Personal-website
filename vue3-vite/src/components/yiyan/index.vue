@@ -55,7 +55,7 @@ const getYiyan = () => {
 
   });
 };
-getYiyan()
+// getYiyan()
 window.setInterval(() => {
   setTimeout(getYiyan(), 0)
 }, 10000)
