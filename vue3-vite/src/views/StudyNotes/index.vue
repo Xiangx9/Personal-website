@@ -1,7 +1,7 @@
 <template>
     <div class="center">
         <el-scrollbar>
-            <el-card class="box-card at-itemshake" v-for="(item, index) in list" :key="index">
+            <el-card class="box-card at-itemright" v-for="(item, index) in list" :key="index">
                 <h1 class="title">{{ item.title }}</h1>
                 <div class="text" v-for="i in item.Url" :key="i">
                     <h2>{{ i.name }}:&nbsp;
@@ -63,7 +63,7 @@ const list = ref([{
     title: '其他类型',
     Url: [{
         name: '主机',
-        url: 'http://xxshow.phpnet.us'
+        url: 'https://cpanel.phpnet.us/'
     }, {
         name: 'cloudflare',
         url: 'https://dash.cloudflare.com/'

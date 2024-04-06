@@ -17,4 +17,19 @@
   .router-link-active {
     text-decoration: none;
   }
+  .demo-form .el-input {
+    border: 0;
+  }
+  .demo-form .el-input__inner{
+    border-color:red;
+    border: 0;
+  }
+  .demo-form .el-input__wrapper{
+    background-color: #00000000;
+    font-size: 16px;
+    border-radius: 0;
+    border-color:#00000000;
+    border: 0;
+  }
+
 }

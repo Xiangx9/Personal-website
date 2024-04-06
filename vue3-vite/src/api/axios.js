@@ -14,9 +14,12 @@ axios.defaults.baseURL = "";
 axios.interceptors.request.use(
   (config) => {
     // 配置请求头
+    let ContentType="application/json;charset=UTF-8"
+    if (config.url=='/api/goods/upload') {
+      ContentType='multipart/form-data' //图片上传
+    }
     config.headers = {
-      //'Content-Type':'application/x-www-form-urlencoded',   // 传参方式表单
-      "Content-Type": "application/json;charset=UTF-8", // 传参方式json
+      "Content-Type": ContentType, // 传参方式json
       Authorization: `Bearer ${tokenStore().token}`, // 这里自定义配置，这里传的是token
     };
     return config;

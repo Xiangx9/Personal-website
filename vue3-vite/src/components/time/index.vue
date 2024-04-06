@@ -43,9 +43,8 @@ const getWeather = () => {
         })
     });
 };
-getWeather();
-
 onMounted(() => {
+    getWeather()
 })
 </script>
 
