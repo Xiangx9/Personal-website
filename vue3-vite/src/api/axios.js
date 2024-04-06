@@ -14,9 +14,9 @@ axios.defaults.baseURL = "";
 axios.interceptors.request.use(
   (config) => {
     // 配置请求头
-    let ContentType="application/json;charset=UTF-8"
-    if (config.url=='/api/goods/upload') {
-      ContentType='multipart/form-data' //图片上传
+    let ContentType = "application/json;charset=UTF-8";
+    if (config.url == "/api/goods/upload") {
+      ContentType = "multipart/form-data"; //图片上传
     }
     config.headers = {
       "Content-Type": ContentType, // 传参方式json
@@ -80,9 +80,8 @@ axios.interceptors.response.use(
           });
         }
       }
-
-      showMessage(response.status); // 传入响应码，匹配响应码对应信息
-      ElMessage.warning(response.data.message);
+      let show = showMessage(response.status); // 传入响应码，匹配响应码对应信息
+      ElMessage.warning(response.data.message || show);
       return Promise.reject(response.data);
     } else {
       ElMessage.warning("网络连接异常,请稍后再试!");
