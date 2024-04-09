@@ -8,6 +8,7 @@ const {
   update,
   findAll,
   getUser,
+  updatetUser
 } = require("../controller/my.controller");
 
 const router = new Router({ prefix: "/My" });
@@ -22,8 +23,12 @@ router.post("/", auth, create);
 router.put("/:id", auth, hadAdminPermission, update);
 
 // 获取简历信息
-router.get("/", findAll);
+router.get("/",auth, findAll);
 
 // 获取用户权限信息
 router.get("/user", auth, hadAdminPermission,getUser);
+
+// 获取修改权限信息
+router.put("/user/:id", auth, hadAdminPermission,updatetUser);
 module.exports = router;
+

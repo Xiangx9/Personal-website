@@ -69,16 +69,21 @@
                 </div>
             </el-card>
         </el-scrollbar>
-        <user :tableData="tableData" v-if="userShow"></user>
+        <el-dialog v-model="userShow" width="500">
+            <user :tableData="tableData" @handleCurrentChange="UploadUser"></user>
+        </el-dialog>
     </div>
 </template>
 
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted ,reactive} from 'vue'
 import { Edit, View as IconView } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import tokenStore from '@/store/token.js'
+
+import { useRouter } from 'vue-router'
+const router = useRouter();
 
 import user from './user/user.vue'
 
@@ -102,6 +107,7 @@ const My = ref({
 //编辑控制
 const EditInp = ref(true)
 const EditFn = () => {
+    find(tokenStore().user.user_name)
     if (!tokenStore().user.is_admin) {
         ElMessage.error('您不是管理员，不能进行更该')
         return false
@@ -137,7 +143,7 @@ const CreateN = async (item) => {
         let pram = My.value
         const { data: res } = await update(item.id || 1, pram)
         if (res.code == 0) {
-            find()
+            await find()
             EditInp.value = true
         }
     } catch (error) {
@@ -145,7 +151,6 @@ const CreateN = async (item) => {
     }
 }
 //获取数据
-const userShow = ref(false)
 const find = async (name) => {
     try {
         let pram = {
@@ -159,29 +164,34 @@ const find = async (name) => {
             return false
         }
         My.value = res.result.dataValues
-        loading.value = false
-        if (name=='admin') {
-            UploadUser()
+        if (name && tokenStore().user.user_name == 'admin' && tokenStore().user.is_admin) {
+            await UploadUser()
         }
+        loading.value = false
     } catch (error) {
         console.log('获取数据', error);
+        if (error.code == '10102') {
+            router.push({
+                path: '/login',
+            })
+        }
     }
 }
 
-// 修改获取用户权限
-const tableData = ref([])
-const UploadUser = async () => {
+// 获取用户权限
+const userShow = ref(false)
+const tableData = reactive([])
+const UploadUser = async (val) => {
     try {
         let pram = {
-            pageNum: 1,
-            pageSize: 10
+            pageNum: val || 1,
+            pageSize: 5
         }
         const { data: res } = await GetUser(pram)
-        console.log('修改获取用户权限', res);
         tableData.value = res.result
-        userShow.value=true
+        userShow.value = true
     } catch (error) {
-        console.log('修改获取用户权限', error);
+        console.log('获取用户权限', error);
     }
 }
 onMounted(() => {

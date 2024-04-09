@@ -75,7 +75,7 @@ const updateUser = async ({ id, user_name, password }) => {
 const findOneUser = async ({ id }) => {
   const whereOpt = { id };
   const users = await User.findOne({ where: whereOpt });
-  console.log(111111, users.dataValues);
+  // console.log(111111, users.dataValues);
 };
 // findOneUser({ id: 2});
 
@@ -84,7 +84,7 @@ const findAllUser = async ({ id}) => {
   const whereOpt = { id };
   const users = await User.findAll({ where: whereOpt });
   users.map((item) => {
-    console.log(item.dataValues);
+    // console.log(item.dataValues);
   });
 };
 findAllUser({ id: 2});

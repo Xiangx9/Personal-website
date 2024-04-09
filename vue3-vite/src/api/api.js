@@ -27,5 +27,7 @@ export class MyShow {     // 个人介绍模块
     static async GetUser (params) {  //获取用户信息
         return request('/api/My/user',params, 'get')
     }
-    
+    static async updateUser (id,params) {  //修改用户权限
+        return request(`/api/My/user/${id}`, params,'put')
+    }
 }

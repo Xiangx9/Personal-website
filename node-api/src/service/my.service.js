@@ -46,6 +46,11 @@ class MyService {
       console.error(err);
     }
   }
+  async updateAdmin(id, user) {
+    const res = await User.update(user, { where: { id } });
+
+    return res[0] > 0 ? true : false;
+  }
 }
 
 module.exports = new MyService();

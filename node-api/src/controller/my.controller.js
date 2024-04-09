@@ -12,6 +12,7 @@ const {
   updateGoods,
   findGoods,
   findUser,
+  updateAdmin
 } = require("../service/my.service");
 
 class GoodsController {
@@ -57,7 +58,7 @@ class GoodsController {
       if (res) {
         ctx.body = {
           code: 0,
-          message: "修改商品成功",
+          message: "修改成功",
           result: "",
         };
       } else {
@@ -86,16 +87,33 @@ class GoodsController {
   async getUser(ctx) {
     try {
       // 1. 解析pageNum和pageSize
-      const { pageNum = 1, pageSize = 10 } = ctx.request.query
+      const { pageNum = 1, pageSize = 10 } = ctx.request.query;
       // 2. 调用数据处理的相关方法
-      const res = await findUser(pageNum, pageSize)
+      const res = await findUser(pageNum, pageSize);
       // 3. 返回结果
       ctx.body = {
         code: 0,
-        message: '获取用户列表成功',
+        message: "获取用户列表成功",
         result: res,
-      }
+      };
     } catch (err) {
+      console.error(err);
+    }
+  }
+  async updatetUser(ctx) {
+    try {
+      const res = await updateAdmin(ctx.params.id, ctx.request.body);
+
+      if (res) {
+        ctx.body = {
+          code: 0,
+          message: "修改成功",
+          result: "",
+        };
+      } else {
+        // return ctx.app.emit('error', invalidGoodsID, ctx)
+      }
+    } catch (error) {
       console.error(err);
     }
   }

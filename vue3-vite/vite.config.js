@@ -47,8 +47,9 @@ export default defineConfig(({ command, mode }) => {
     },
     // 本地运行配置，及反向代理配置
     server: {
-      host: "127.0.0.1",
+      host: true,
       port: 9000,
+      strictPort:true,
       hotOnly: false,
       strictPort: false,
       cors: true,
