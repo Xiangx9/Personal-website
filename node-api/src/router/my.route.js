@@ -23,7 +23,7 @@ router.post("/", auth, create);
 router.put("/:id", auth, hadAdminPermission, update);
 
 // 获取简历信息
-router.get("/",auth, findAll);
+router.get("/", findAll);
 
 // 获取用户权限信息
 router.get("/user", auth, hadAdminPermission,getUser);

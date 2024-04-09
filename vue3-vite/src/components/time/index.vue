@@ -15,33 +15,30 @@
 </template>
 
 <script setup>
-import myaxios from "axios";
 import { onMounted, ref } from 'vue'
-import { useNow, useDateFormat, set } from '@vueuse/core'
+import { useNow, useDateFormat, useFetch } from '@vueuse/core'
 
 const formatted = useDateFormat(useNow(), 'YYYY-MM-DD HH:mm:ss')
 
 const weatherAyy = ref([
 ]);
-const getWeather = () => {
+const getWeather =async () => {
     let city = 430100
-    myaxios.get(`https://restapi.amap.com/v3/weather/weatherInfo?key=b56c2ce4034f972662eaf19bd1d3bf27&city=${city}&extensions=all`).then((res) => {
-        const { data } = res
-        console.log(data.forecasts[0]);
-        weatherAyy.value = data.forecasts;
-        weatherAyy.value[0].casts.map(item => {
-            const setMap ={
-                1:"一",
-                2:"二",
-                3:"三",
-                4:"四",
-                5:"五",
-                6:"六",
-                7:"天",
-            }
-            item.week=setMap[item.week]
-        })
-    });
+    const { isFetching, error, data } =await  useFetch(`https://restapi.amap.com/v3/weather/weatherInfo?key=b56c2ce4034f972662eaf19bd1d3bf27&city=${city}&extensions=all`).get().json()
+    console.log(data.value);
+    weatherAyy.value = data.value.forecasts;
+    weatherAyy.value[0].casts.map(item => {
+        const setMap = {
+            1: "一",
+            2: "二",
+            3: "三",
+            4: "四",
+            5: "五",
+            6: "六",
+            7: "天",
+        }
+        item.week = setMap[item.week]
+    })
 };
 onMounted(() => {
     getWeather()

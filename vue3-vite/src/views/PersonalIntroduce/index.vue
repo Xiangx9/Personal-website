@@ -28,19 +28,19 @@
                 </el-skeleton>
                 <div v-if="!loading">
                     <el-link :underline="false" :icon="Edit" style="float: right;" @click="EditFn()"></el-link>
-                    <el-link :underline="false" style="float: left;" @click="find('admin')">
+                    <el-link :underline="false" style="float: left;" @click="find('向鑫')">
                         <el-icon class="el-icon--right"><icon-view /></el-icon>
                     </el-link>
                     <div class="avatar" style="display: flex; align-items: center;">
                         <el-upload :disabled="EditInp" action :http-request="Upload" :show-file-list="false"
                             :before-upload="beforeAvatarUpload">
-                            <el-avatar :size="100" :src="My.avatar" />
+                            <el-avatar :size="80" :src="My.avatar" />
                         </el-upload>
                         <div style=" display: flex; flex-direction: column; position: relative; margin-left: 15px;">
                             <div v-if="EditInp">
-                                <div style="font-size: 30px;">{{ My.name || "姓名:" }}</div>
+                                <div style="font-size: 0.4rem;">姓名: {{ My.name || "" }}</div>
                                 <div style="height: 10px;"></div>
-                                <div style="font-size:20px;">{{ My.phone || '电话:' }}</div>
+                                <div style="font-size:0.3rem;">电话: {{ My.phone || '' }}</div>
                             </div>
                             <div v-else>
                                 <el-input v-model="My.name" clearable class="demo-form" placeholder="请输入姓名" />
@@ -50,17 +50,17 @@
                         </div>
                     </div>
                     <div>
-                        <h1>个人介绍</h1>
+                        <h1 style="font-size: 0.8rem;">个人介绍</h1>
                         <el-input :disabled="EditInp" v-model="My.my" style="width: 100%"
                             :autosize="{ minRows: 2, maxRows: 4 }" type="textarea" placeholder="" />
                     </div>
                     <div>
-                        <h1>工作经历</h1>
-                        <el-input :disabled="EditInp" v-model="My.Work" style="width: 100%"
+                        <h1 style="font-size: 0.8rem;">工作经历</h1>
+                        <el-input :disabled="EditInp" v-model="My.Work" style="width: 100%;"
                             :autosize="{ minRows: 2, maxRows: 4 }" type="textarea" placeholder="" />
                     </div>
                     <div>
-                        <h1>项目经历</h1>
+                        <h1 style="font-size: 0.8rem;">项目经历</h1>
                         <el-input :disabled="EditInp" v-model="My.Project" style="width: 100%"
                             :autosize="{ minRows: 2, maxRows: 4 }" type="textarea" placeholder="" />
                     </div>
@@ -77,9 +77,9 @@
 
 
 <script setup>
-import { ref, onMounted ,reactive} from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 import { Edit, View as IconView } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import tokenStore from '@/store/token.js'
 
 import { useRouter } from 'vue-router'
@@ -107,7 +107,7 @@ const My = ref({
 //编辑控制
 const EditInp = ref(true)
 const EditFn = () => {
-    find(tokenStore().user.user_name)
+    tokenStore().user.user_name == '向鑫' ? '' : find(tokenStore().user.user_name)
     if (!tokenStore().user.is_admin) {
         ElMessage.error('您不是管理员，不能进行更该')
         return false
@@ -154,7 +154,7 @@ const CreateN = async (item) => {
 const find = async (name) => {
     try {
         let pram = {
-            name: name || My.value.name
+            name: name || My.value.name || '向鑫'
         }
         const { data: res } = await findAll(pram)
         console.log(res);
@@ -164,17 +164,25 @@ const find = async (name) => {
             return false
         }
         My.value = res.result.dataValues
-        if (name && tokenStore().user.user_name == 'admin' && tokenStore().user.is_admin) {
+        if (name && tokenStore().user.user_name == '向鑫' && tokenStore().user.is_admin) {
             await UploadUser()
         }
         loading.value = false
     } catch (error) {
         console.log('获取数据', error);
-        if (error.code == '10102') {
-            router.push({
-                path: '/login',
+        ElMessageBox.confirm(
+            '没有登录，无法查看',
+            {
+                confirmButtonText: '登录',
+                cancelButtonText: '取消',
+                type: 'warning',
+            }
+        )
+            .then(() => {
+                router.push({
+                    path: '/login',
+                })
             })
-        }
     }
 }
 
