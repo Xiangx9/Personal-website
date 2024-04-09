@@ -10,6 +10,7 @@
 <script setup>
 import myaxios from "axios";
 import { ref } from 'vue';
+import { useIntervalFn } from '@vueuse/core'
 
 //父传子
 import { defineProps,defineEmits  } from "vue"
@@ -55,10 +56,10 @@ const getYiyan = () => {
 
   });
 };
-// getYiyan()
-window.setInterval(() => {
-  setTimeout(getYiyan(), 0)
-}, 10000)
+const { pause, resume, isActive } = useIntervalFn(() => {
+ getYiyan()
+}, 100000)
+
 </script>
 
 <style lang="scss" scoped>
