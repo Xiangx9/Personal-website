@@ -2,7 +2,7 @@ import './style.css'
 import './styles/index.scss'
 import './styles/Animation.css' // 引入动画
 import './styles/fonts/font.css' // 引入字体
-import "./styles/iocnfont/iconfont.css"; // 引入图标
+import "../public/iocnfont/iconfont.css"; // 引入图标
 
 import { createApp } from 'vue'
 import router from './router'

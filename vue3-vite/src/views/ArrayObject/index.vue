@@ -17,9 +17,9 @@
 <script setup>
 import { ref } from 'vue'
 const list = ref([{
-    img: '/src/assets/images/Number.png',
+    img: '/images/Number.png',
 }, {
-    img: '/src/assets/images/str.png',
+    img: '/images/str.png',
 },])
 </script>
 

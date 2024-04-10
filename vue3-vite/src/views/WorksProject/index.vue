@@ -25,11 +25,11 @@ const list = ref([{
            3.大概功能流程为，用户通过小程序扫码，选择套餐，选择优惠劵，下单启动氧舱，后台生成相应的数据
             `,
     img:[{
-        a:'/src/assets/images/image1.png',
+        a:'/images/image1.png',
     },{
-        a:'/src/assets/images/image2.png',
+        a:'/images/image2.png',
     },{
-        a:'/src/assets/images/image3.png',
+        a:'/images/image3.png',
     }]
 }, {
     title: '氧康智能小程序',

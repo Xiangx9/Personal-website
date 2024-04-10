@@ -94,7 +94,7 @@ const loading = ref(true)
 console.log();
 //内容
 const My = ref({
-    avatar: '/src/assets/images/background1.webp',
+    avatar: '/images/background1.webp',
     name: tokenStore().user.user_name,
     phone: '电话：',
     my: `暂无信息

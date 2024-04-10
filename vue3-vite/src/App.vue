@@ -24,9 +24,9 @@ import { onMounted, ref } from 'vue'
 // const isDark = useDark()
 // const toggleDark = useToggle(isDark)
 //引入图片
-let bgcImg = ref('url("/src/assets/images/background2.webp")')
+let bgcImg = ref('url("/images/background2.webp")')
 const getImage = (name) => {
-    const ImageUrl = `/src/assets/images/background${name}.webp`
+    const ImageUrl = `/images/background${name}.webp`
     bgcImg.value = `url(${ImageUrl})`
     // console.log( bgcImg.value);
 }
