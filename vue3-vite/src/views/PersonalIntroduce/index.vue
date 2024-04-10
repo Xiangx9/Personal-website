@@ -108,6 +108,21 @@ const My = ref({
 const EditInp = ref(true)
 const EditFn = () => {
     tokenStore().user.user_name == '向鑫' ? '' : find(tokenStore().user.user_name)
+    if (!tokenStore().user.token) {
+        ElMessageBox.confirm(
+            '没有登录，请登录',
+            {
+                confirmButtonText: '登录',
+                cancelButtonText: '取消',
+                type: 'warning',
+            }
+        ).then(() => {
+            router.push({
+                path: '/login',
+            })
+        })
+        return false
+    }
     if (!tokenStore().user.is_admin) {
         ElMessage.error('您不是管理员，不能进行更该')
         return false
@@ -177,12 +192,11 @@ const find = async (name) => {
                 cancelButtonText: '取消',
                 type: 'warning',
             }
-        )
-            .then(() => {
-                router.push({
-                    path: '/login',
-                })
+        ).then(() => {
+            router.push({
+                path: '/login',
             })
+        })
     }
 }
 

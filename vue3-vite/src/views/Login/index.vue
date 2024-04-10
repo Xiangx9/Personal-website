@@ -5,12 +5,14 @@
       <el-input v-model="userFrom.password" style="width: 300px;height: 50px;margin: 20px 0;" placeholder="请输入密码"
         clearable show-password />
       <div id="draw-border">
-        <button style="width: 300px;height: 50px;" @click="login()">{{ loginText }}</button>
+        <button  style="width: 300px;height: 50px;" @click="login()">
+          <span :class="{'at-item':active}"> {{ loginText }}</span>
+        </button>
       </div>
       <!-- <el-button type="primary" style="width: 300px;height: 50px;" @click="login()">{{ loginText }}</el-button> -->
-      <div class="loginText">
-        <div @click="loginText = '登录'">登录</div>
-        <div @click="loginText = '注册'">没有账号，去注册</div>
+      <div class="loginText ">
+        <div @click="loginText = '登录';active=!active">登录</div>
+        <div @click="loginText = '注册';active=!active">没有账号，去注册</div>
       </div>
     </div>
   </div>
@@ -24,6 +26,7 @@ import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 const router = useRouter();
 
+const active=ref(false)
 const loginText = ref('登录')
 const userFrom = ref({})
 const login = async () => {
