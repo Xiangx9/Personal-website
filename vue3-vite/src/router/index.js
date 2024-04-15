@@ -41,6 +41,12 @@ const routes = [
     name: "ArrayObject",
     component: () => import("@/views/ArrayObject/index.vue"),
   },
+  {
+    //ai
+    path: "/AI",
+    name: "AI",
+    component: () => import("@/views/AI/index.vue"),
+  },
 ];
 
 //创建路由

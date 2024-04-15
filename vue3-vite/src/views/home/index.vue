@@ -2,7 +2,7 @@
     <div class="center">
         <div class="name  at-item">Welcome to<span>Xin's world</span> </div>
         <el-scrollbar>
-            <div class="home">
+            <div  class="home">
                 <div class="scrollbar-demo-item">
                     <Yiyan :title="title" @handleAdd="handleAdd"></Yiyan>
                 </div>
@@ -33,7 +33,7 @@
                         <div class="iconfont icon-pingdingfangfa"></div>
                     </router-link>
                 </div>
-                <div class="scrollbar-demo-item bgimg"> </div>
+                <div @click="router.replace({ path: '/AI' })" class="scrollbar-demo-item bgimg"> </div>
             </div>
         </el-scrollbar>
     </div>

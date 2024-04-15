@@ -4,6 +4,9 @@ import './styles/Animation.css' // 引入动画
 import './styles/fonts/font.css' // 引入字体
 import "../public/iocnfont/iconfont.css"; // 引入图标
 
+import highlight from 'highlight.js'
+import "highlight.js/styles/atom-one-dark.css"
+
 import { createApp } from 'vue'
 import router from './router'
 import pinia from '@/store'
@@ -24,5 +27,13 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(pinia)
 app.use(router)
 app.use(ElementPlus)
+
+// 配置Markdown语法高亮
+app.directive("highlight",function(el){
+  let blocks = el.querySelectorAll('pre code');
+  blocks.forEach((block)=>{
+    highlight.highlightBlock(block);
+  })
+})
 // 挂载实例
 app.mount('#app')
