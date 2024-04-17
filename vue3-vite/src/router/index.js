@@ -10,6 +10,10 @@ const routes = [
     path: "/", //路由分配的 URL
     name: "home", //当路由指向此页面时显示的名字
     component: () => import("@/views/home/index.vue"), //路由调用这个页面时加载的组件名
+    meta: {
+      keepAlive: true
+      // keepAlive为 true表示缓存处理
+    }
   },
   {
     //登录
@@ -47,6 +51,12 @@ const routes = [
     name: "AI",
     component: () => import("@/views/AI/index.vue"),
   },
+  {
+    //Three
+    path: "/Three",
+    name: "Three",
+    component: () => import("@/views/Three/index.vue"),
+  },
 ];
 
 //创建路由
@@ -56,13 +66,15 @@ const router = createRouter({
   routes, //路由路径
   scrollBehavior(to, from, savedPosition) {
     //滚动行为
-    // 滚动到锚点
-    // if (to.hash) {
-    //   return {
-    //     el: to.hash,
-    //     behavior: "smooth",
-    //   };
-    // }
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      if (to.meta.savedPosition) {
+        // 如果meta信息中存在savedPosition，页面就滚动到上次浏览的位置（savedPosition）
+        return { x: 0, y: to.meta.savedPosition}
+      }
+      return { x: 0, y: 0 }
+    }
   },
 });
 

@@ -224,6 +224,11 @@
   "resolved" "https://registry.npmmirror.com/@tootallnate/once/-/once-2.0.0.tgz"
   "version" "2.0.0"
 
+"@tweenjs/tween.js@^23.1.1":
+  "integrity" "sha512-ZpboH7pCPPeyBWKf8c7TJswtCEQObFo3bOBYalm99NzZarATALYCo5OhbCa/n4RQyJyHfhkdx+hNrdL5ByFYDw=="
+  "resolved" "https://registry.npmmirror.com/@tweenjs/tween.js/-/tween.js-23.1.1.tgz"
+  "version" "23.1.1"
+
 "@types/eslint-scope@^3.7.3":
   "integrity" "sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg=="
   "resolved" "https://registry.npmmirror.com/@types/eslint-scope/-/eslint-scope-3.7.7.tgz"
@@ -4583,6 +4588,11 @@
     "prelude-ls" "~1.1.2"
     "type-check" "~0.3.2"
 
+"lil-gui@^0.18.2":
+  "integrity" "sha512-DgdrLy3/KGC0PiQLKgOcJMPItP4xY4iWgJ9+91Zaxfr8GCTmMps05QS9w9jW7yspILlbscbquwjOwxmWnSx5Uw=="
+  "resolved" "https://registry.npmmirror.com/lil-gui/-/lil-gui-0.18.2.tgz"
+  "version" "0.18.2"
+
 "lines-and-columns@^1.1.6":
   "integrity" "sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg=="
   "resolved" "https://registry.npmmirror.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz"
@@ -7409,6 +7419,11 @@
   "integrity" "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ="
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
+
+"three@^0.163.0":
+  "integrity" "sha512-HlMgCb2TF/dTLRtknBnjUTsR8FsDqBY43itYop2+Zg822I+Kd0Ua2vs8CvfBVefXkBdNDrLMoRTGCIIpfCuDew=="
+  "resolved" "https://registry.npmmirror.com/three/-/three-0.163.0.tgz"
+  "version" "0.163.0"
 
 "through@^2.3.6":
   "integrity" "sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU="

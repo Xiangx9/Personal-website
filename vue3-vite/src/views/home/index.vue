@@ -3,7 +3,7 @@
         <div class="name  at-item">Welcome to<span>Xin's world</span> </div>
         <el-scrollbar>
             <div  class="home">
-                <div class="scrollbar-demo-item">
+                <div  class="scrollbar-demo-item">
                     <Yiyan :title="title" @handleAdd="handleAdd"></Yiyan>
                 </div>
                 <div class="scrollbar-demo-item">
@@ -33,7 +33,13 @@
                         <div class="iconfont icon-pingdingfangfa"></div>
                     </router-link>
                 </div>
-                <div @click="router.replace({ path: '/AI' })" class="scrollbar-demo-item bgimg"> </div>
+                <div class="scrollbar-demo-item ">
+                    <router-link to="/Three" class="title">
+                        <div class="title"> Three.js</div>
+                        <div class="iconfont icon-a-car6-1"></div>
+                    </router-link>
+                </div>
+                <div @click="router.push({ path: '/AI' })" class="scrollbar-demo-item bgimg"> </div>
             </div>
         </el-scrollbar>
     </div>
@@ -45,7 +51,6 @@ import { useRoute, useRouter } from 'vue-router'
 import tokenStore from '../../store/token'
 import Yiyan from '@/components/yiyan/index.vue'; // 引入 一言
 import Time from '@/components/time/index.vue'; // 引入 时间 天气
-
 const router = useRouter()
 
 // 接收参数
