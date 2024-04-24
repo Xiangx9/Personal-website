@@ -25,6 +25,7 @@
 ###图片
 ![image](https://github.com/Xiangx9/Personal-website/assets/103874620/e1830ee3-2b1b-472d-9824-4f3096819bda)
 ![image](https://github.com/Xiangx9/Personal-website/assets/103874620/9e741535-27d2-4cc2-a1f5-9c35c82ed734)
-![模块](https://foruda.gitee.com/images/1713943092715762529/229d9b9d_10820871.png "屏幕截图")
-![输入图片说明](https://foruda.gitee.com/images/1713943878122904338/e4a8a7fd_10820871.png "屏幕截图")
-![输入图片说明](https://foruda.gitee.com/images/1713943302599114189/09f69fc6_10820871.png "屏幕截图")
+![image](https://github.com/Xiangx9/Personal-website/assets/103874620/3941b631-d4f3-45f7-bb95-8df94d05523b)
+![image](https://github.com/Xiangx9/Personal-website/assets/103874620/dbae1484-f3f7-4a06-8078-145bdbce895d)
+![image](https://github.com/Xiangx9/Personal-website/assets/103874620/14c835a8-92c4-44d5-bfe9-02b647c891a9)
+
