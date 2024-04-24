@@ -23,8 +23,8 @@
 3.  npm run build
 
 ###图片
-![输入图片说明](https://foruda.gitee.com/images/1713942890681375527/a0f4b75f_10820871.png "屏幕截图")
-![输入图片说明](https://foruda.gitee.com/images/1713942949728359122/a9562b6e_10820871.png "屏幕截图")
+![image](https://github.com/Xiangx9/Personal-website/assets/103874620/e1830ee3-2b1b-472d-9824-4f3096819bda)
+![image](https://github.com/Xiangx9/Personal-website/assets/103874620/9e741535-27d2-4cc2-a1f5-9c35c82ed734)
 ![模块](https://foruda.gitee.com/images/1713943092715762529/229d9b9d_10820871.png "屏幕截图")
 ![输入图片说明](https://foruda.gitee.com/images/1713943878122904338/e4a8a7fd_10820871.png "屏幕截图")
 ![输入图片说明](https://foruda.gitee.com/images/1713943302599114189/09f69fc6_10820871.png "屏幕截图")
